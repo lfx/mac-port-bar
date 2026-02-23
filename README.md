@@ -37,3 +37,15 @@ Simply run the application:
 ```
 
 The application icon will appear in your top right menu bar. Click it to view and manage your open HTTP ports.
+
+## Automated Releases
+
+This repository includes a GitHub Actions pipeline hooked up to GoReleaser that automatically builds binaries for macOS (Intel & Silicon) when pushing a new version tag to GitHub.
+
+To create a new automated release, utilize the helper script:
+
+```bash
+./release.sh v1.0.0
+```
+
+*This script validates the version formatting, sets the git tag, and pushes it to origin, instantly triggering the `CI & Release` workflow.*
