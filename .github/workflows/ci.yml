@@ -30,6 +30,8 @@ jobs:
     runs-on: macos-latest
     needs: test
     if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
