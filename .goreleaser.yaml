@@ -28,3 +28,25 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+brews:
+  - repository:
+      owner: lfx
+      name: homebrew-tools
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    
+    # The directory inside the tap repository
+    directory: Formula
+
+    # Metadata
+    description: "Your tool description"
+    homepage: "https://github.com/lfx/mac-port-bar"
+
+    # (Optional) Service block for background processes
+    # service: |
+    #   run opt_bin/"your-tool"
+    #   keep_alive true
+
+    # Custom install or test instructions if necessary
+    test: |
+      assert_path_exists bin/"mac-port-bar"
+      assert_predicate bin/"mac-port-bar", :executable?
