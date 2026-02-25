@@ -3,8 +3,10 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"flag"
 	"fmt"
 	"net/http"
+	"os"
 	"os/exec"
 	"sort"
 	"strconv"
@@ -89,7 +91,26 @@ type Process struct {
 	StatusCode int
 }
 
+var version = "dev"
+
 func main() {
+	versionFlag := flag.Bool("version", false, "Print version information and exit")
+	vFlag := flag.Bool("v", false, "Print version information and exit (shorthand)")
+
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "Usage of %s:\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "A menu bar application to view and manage open HTTP ports.\n\n")
+		fmt.Fprintf(os.Stderr, "Flags:\n")
+		flag.PrintDefaults()
+	}
+
+	flag.Parse()
+
+	if *versionFlag || *vFlag {
+		fmt.Printf("anti-go-ports-to-bar version %s\n", version)
+		os.Exit(0)
+	}
+
 	systray.Run(onReady, onExit)
 }
 
