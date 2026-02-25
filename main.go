@@ -107,7 +107,7 @@ func main() {
 	flag.Parse()
 
 	if *versionFlag || *vFlag {
-		fmt.Printf("anti-go-ports-to-bar version %s\n", version)
+		fmt.Printf("mac-port-bar version %s\n", version)
 		os.Exit(0)
 	}
 
