@@ -67,7 +67,9 @@ func checkHTTPServer(pid, command, port string) int {
 		}
 	} else {
 		// Print standard error to help users debug running from terminal
-		fmt.Printf("[DEBUG] HTTP ping failed for %s (PID %s) on port %s: %v\n", command, pid, port, err)
+		if version == "dev" {
+			fmt.Printf("[DEBUG] HTTP ping failed for %s (PID %s) on port %s: %v\n", command, pid, port, err)
+		}
 
 		if strings.Contains(err.Error(), "malformed HTTP response") || strings.Contains(err.Error(), "server gave HTTP response to HTTPS client") {
 			status = 200 // Treat as valid
@@ -112,6 +114,8 @@ func main() {
 	}
 
 	systray.Run(onReady, onExit)
+
+	os.Exit(0)
 }
 
 func onReady() {

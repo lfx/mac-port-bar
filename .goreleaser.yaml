@@ -38,13 +38,14 @@ brews:
     directory: Formula
 
     # Metadata
-    description: "Your tool description"
+    description: "Lightweight macOS menu bar utility listing locally running HTTP services"
     homepage: "https://github.com/lfx/mac-port-bar"
-
     # (Optional) Service block for background processes
-    # service: |
-    #   run opt_bin/"your-tool"
-    #   keep_alive true
+    service: |
+      run opt_bin/"mac-port-bar"
+      keep_alive successful_exit: false
+      log_path var/"log/mac-port-bar.log"
+      error_log_path var/"log/mac-port-bar.log"
 
     # Custom install or test instructions if necessary
     test: |
